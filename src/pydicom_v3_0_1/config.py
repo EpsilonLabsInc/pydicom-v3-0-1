@@ -183,9 +183,9 @@ def DS_decimal(use_Decimal_boolean: bool = True) -> None:
     import pydicom_v3_0_1.valuerep
 
     if use_DS_decimal:
-        pydicom.valuerep.DSclass = pydicom.valuerep.DSdecimal
+        pydicom_v3_0_1.valuerep.DSclass = pydicom_v3_0_1.valuerep.DSdecimal
     else:
-        pydicom.valuerep.DSclass = pydicom.valuerep.DSfloat
+        pydicom_v3_0_1.valuerep.DSclass = pydicom_v3_0_1.valuerep.DSfloat
 
 
 # Configuration flags

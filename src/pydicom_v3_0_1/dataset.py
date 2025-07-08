@@ -604,7 +604,7 @@ class Dataset:
         dicom_character_set = self._character_set
 
         # Shortcut to the decode function in pydicom.charset
-        decode_data_element = pydicom.charset.decode_element
+        decode_data_element = pydicom_v3_0_1.charset.decode_element
 
         # Callback for walk(), to decode the chr strings if necessary
         # This simply calls the pydicom.charset.decode_element function
@@ -1747,10 +1747,10 @@ class Dataset:
             # the name in config differs from the actual handler name
             # we allow both
             handler_name = "jpegls_handler"
-        if not hasattr(pydicom.config, handler_name):
+        if not hasattr(pydicom_v3_0_1.config, handler_name):
             raise ValueError(f"'{name}' is not a known handler name")
 
-        handler = getattr(pydicom.config, handler_name)
+        handler = getattr(pydicom_v3_0_1.config, handler_name)
 
         tsyntax = self.file_meta.TransferSyntaxUID
         if not handler.supports_transfer_syntax(tsyntax):
@@ -2639,7 +2639,7 @@ class Dataset:
                     "is what you really want to do"
                 )
 
-        pydicom.dcmwrite(
+        pydicom_v3_0_1.dcmwrite(
             filename,
             self,
             __write_like_original,
@@ -2797,8 +2797,8 @@ class Dataset:
         self._dict[elem_tag] = elem
 
         if elem.VR == VR_.SQ and isinstance(elem, DataElement):
-            if not isinstance(elem.value, pydicom.Sequence):
-                elem.value = pydicom.Sequence(elem.value)  # type: ignore
+            if not isinstance(elem.value, pydicom_v3_0_1.Sequence):
+                elem.value = pydicom_v3_0_1.Sequence(elem.value)  # type: ignore
 
             # Update the `_pixel_rep` attribute when nested sequences
             #   containing RawDataElements are being added to a different

@@ -881,14 +881,14 @@ def read_partial(
             #   and hope for the best (big endian is retired anyway)
             if group >= 1024:
                 is_little_endian = False
-    elif transfer_syntax == pydicom.uid.ImplicitVRLittleEndian:
+    elif transfer_syntax == pydicom_v3_0_1.uid.ImplicitVRLittleEndian:
         pass
-    elif transfer_syntax == pydicom.uid.ExplicitVRLittleEndian:
+    elif transfer_syntax == pydicom_v3_0_1.uid.ExplicitVRLittleEndian:
         is_implicit_VR = False
-    elif transfer_syntax == pydicom.uid.ExplicitVRBigEndian:
+    elif transfer_syntax == pydicom_v3_0_1.uid.ExplicitVRBigEndian:
         is_implicit_VR = False
         is_little_endian = False
-    elif transfer_syntax == pydicom.uid.DeflatedExplicitVRLittleEndian:
+    elif transfer_syntax == pydicom_v3_0_1.uid.DeflatedExplicitVRLittleEndian:
         # See PS3.5 section A.5
         # when written, the entire dataset following
         #     the file metadata was prepared the normal way,
@@ -905,10 +905,10 @@ def read_partial(
         buffer.name = name
         fileobj = cast(BinaryIO, buffer)  # a file-like object
         is_implicit_VR = False
-    elif transfer_syntax in pydicom.uid.PrivateTransferSyntaxes:
+    elif transfer_syntax in pydicom_v3_0_1.uid.PrivateTransferSyntaxes:
         # Replace with the registered UID as it has the encoding information
-        index = pydicom.uid.PrivateTransferSyntaxes.index(transfer_syntax)
-        transfer_syntax = pydicom.uid.PrivateTransferSyntaxes[index]
+        index = pydicom_v3_0_1.uid.PrivateTransferSyntaxes.index(transfer_syntax)
+        transfer_syntax = pydicom_v3_0_1.uid.PrivateTransferSyntaxes[index]
         is_implicit_VR = transfer_syntax.is_implicit_VR
         is_little_endian = transfer_syntax.is_little_endian
     else:

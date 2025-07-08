@@ -617,19 +617,19 @@ class DataElement:
             val = val.decode()
 
         if self.VR == VR_.IS:
-            return pydicom.valuerep.IS(val, self.validation_mode)
+            return pydicom_v3_0_1.valuerep.IS(val, self.validation_mode)
 
         if self.VR == VR_.DA and config.datetime_conversion:
-            return pydicom.valuerep.DA(val, validation_mode=self.validation_mode)
+            return pydicom_v3_0_1.valuerep.DA(val, validation_mode=self.validation_mode)
 
         if self.VR == VR_.DS:
-            return pydicom.valuerep.DS(val, False, self.validation_mode)
+            return pydicom_v3_0_1.valuerep.DS(val, False, self.validation_mode)
 
         if self.VR == VR_.DT and config.datetime_conversion:
-            return pydicom.valuerep.DT(val, validation_mode=self.validation_mode)
+            return pydicom_v3_0_1.valuerep.DT(val, validation_mode=self.validation_mode)
 
         if self.VR == VR_.TM and config.datetime_conversion:
-            return pydicom.valuerep.TM(val, validation_mode=self.validation_mode)
+            return pydicom_v3_0_1.valuerep.TM(val, validation_mode=self.validation_mode)
 
         if self.VR == VR_.UI:
             return UID(val, self.validation_mode) if val is not None else None

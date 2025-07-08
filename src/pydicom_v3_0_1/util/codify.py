@@ -347,7 +347,7 @@ def code_file(
         A string containing code lines to recreate the entire DICOM file
 
     """
-    ds = pydicom.dcmread(filename, force=True)
+    ds = pydicom_v3_0_1.dcmread(filename, force=True)
     return code_file_from_dataset(ds, exclude_size, include_private)
 
 
